@@ -225,7 +225,7 @@ static void pcSerialComCommandUpdate( char receivedChar )
 
 static void readEventsFromSDCard()
 {
-    // Find the most recent file
+    //Find the most recent file
     char filename[SD_CARD_FILENAME_MAX_LENGTH] = "";
     time_t latestTime = 0;
     DIR *dir = opendir("/sd/");
@@ -269,7 +269,7 @@ static void readEventsFromSDCard()
         return;
     }
 
-    // Open the file
+    //Open the file
     char filePath[SD_CARD_FILENAME_MAX_LENGTH + 5];
     sprintf(filePath, "/sd/%s", filename);
     FILE *file = fopen(filePath, "r");
@@ -285,7 +285,7 @@ static void readEventsFromSDCard()
         return;
     }
 
-    // Display reading message
+    //Display reading message
     pcSerialComStringWrite("Reading recent events from ");
     pcSerialComStringWrite(filename);
     pcSerialComStringWrite(":\r\n");
@@ -294,7 +294,7 @@ static void readEventsFromSDCard()
     displayCharPositionWrite(0, 1);
     displayStringWrite("                    ");
 
-    // Read and output file contents line by line
+    //Read and output file contents line by line
     char buffer[EVENT_STR_LENGTH];
     while (fgets(buffer, EVENT_STR_LENGTH, file) != NULL) {
         pcSerialComStringWrite(buffer);
@@ -306,10 +306,10 @@ static void readEventsFromSDCard()
         }
     }
 
-    // Close the file
+    //Close the file
     fclose(file);
 
-    // Display completion message
+    //Display completion message
     pcSerialComStringWrite("Finished reading recent events from ");
     pcSerialComStringWrite(filename);
     pcSerialComStringWrite("\r\n");
